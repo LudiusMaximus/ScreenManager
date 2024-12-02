@@ -1,0 +1,17 @@
+## Interface: 110005
+## Version: @project-version@
+## Title: Screen Manager
+## Author: LudiusMaximus
+## Notes: Manage screen related stuff.
+## RequiredDeps:
+## OptionalDeps:
+## SavedVariables: ScreenManager_config
+## X-Curse-Project-ID:
+## X-WoWI-ID:
+## X-Donate: PayPal:ludiusmaximus@gmail.com
+## X-License: The MIT License (MIT)
+
+embeds.xml
+
+main.lua
+options.lua

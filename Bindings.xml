@@ -1,0 +1,3 @@
+<Bindings>
+  <Binding name="SCREEN_MANAGER_FULLSCREEN_TOGGLE" category="Screen Manager">ScreenManager_FullscreenToggle()</Binding>
+</Bindings>
