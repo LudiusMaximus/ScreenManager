@@ -13,6 +13,8 @@ local CONFIG_DEFAULTS = {
   fadeInAfterLoading_notInCombat = true,
   fadeInAfterLoading_startAfter  = 0.2,
   fadeInAfterLoading_fadeTime    = 1.2,
+  
+  monitorToggle_windowResize = true,
 
   resolutionProfileList = {},
 }
@@ -417,7 +419,7 @@ local optionsTable = {
         fullScreenToggleAssignButton = {
           order = 2,
           type = "execute",
-          name = "New key bind",
+          name = "New Key Bind",
           desc = "Assign a new hotkey binding.",
           width = 0.9,
           func =
@@ -476,7 +478,7 @@ local optionsTable = {
         monitorToggleAssignButton = {
           order = 2,
           type = "execute",
-          name = "New key bind",
+          name = "New Key Bind",
           desc = "Assign a new hotkey binding.",
           width = 0.9,
           func =
@@ -503,6 +505,19 @@ local optionsTable = {
               if GetBindingKey("SCREEN_MANAGER_MONITOR_TOGGLE") then return false else return true end
             end,
         },
+        
+        
+        monitorToggleWindowResizeToggle = {
+          order = 4,
+          type = "toggle",
+          name = "Resize Window to Match Monitor",
+          desc = "When the non-maximised game window is moved to another monitor, automatically set it to an aspect ratio matching the monitor.",
+          width = "full",
+          get = function() return config.monitorToggle_windowResize end,
+          set = function(_, newValue) config.monitorToggle_windowResize = newValue end,
+        },
+        
+        
       },
     },
     
@@ -511,7 +526,7 @@ local optionsTable = {
 
     fadeInAfterLoadingGroup = {
       type = "group",
-      name = "Fade in after loading screen",
+      name = "Fade In After Loading Screen",
       order = 4,
       inline = true,
       args = {
@@ -529,7 +544,7 @@ local optionsTable = {
         fadeInAfterLoadingNotInCombatToggle = {
           order = 2,
           type = "toggle",
-          name = "Disable in combat",
+          name = "Disable In Combat",
           desc = "When you are in combat, directly show the game after the loading screen without fade in.",
           width = 1,
           disabled = function() return not config.fadeInAfterLoading end,
@@ -542,7 +557,7 @@ local optionsTable = {
         fadeInAfterLoadingStartAfter = {
           order = 3,
           type = "range",
-          name = "Seconds before fading starts",
+          name = "Seconds Before Fading Starts",
           desc = "How long the screen stays black after the loading screen before the fade in starts.",
           min = 0,
           max = 5,
@@ -558,7 +573,7 @@ local optionsTable = {
         fadeInAfterLoadingFadeTime = {
           order = 4,
           type = "range",
-          name = "Seconds to fade in",
+          name = "Seconds to Fade In",
           desc = "How long the fade in takes to complete.",
           min = 0,
           max = 5,
@@ -586,7 +601,7 @@ local optionsTable = {
         fadeInAfterLoadingRestoreDefaults = {
           order = 6,
           type = "execute",
-          name = "Restore defaults",
+          name = "Restore Defaults",
           desc = "Restore settings to the preference of the addon developer.",
           width = "normal",
           disabled =

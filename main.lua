@@ -36,7 +36,9 @@ end
 -- ###################################
 
 -- Pick a window resolution suitable for this monitor with the same apect ratio.
-local function FitNonMaxWindowIntoScreen()
+local function FitNonMaxWindowIntoMonitor()
+
+  if not ScreenManager_config.monitorToggle_windowResize then return end
 
   -- Should not be called for fullscreen. But checking to be on the safe side.
   if GetCVar("gxMaximize") == "1" then return end
@@ -47,7 +49,7 @@ local function FitNonMaxWindowIntoScreen()
 
   -- Only if we are not already maximised.
   if actualWidth == maxWidth then
-    -- print("No FitNonMaxWindowIntoScreen() needed, because of maximised window.")
+    -- print("No FitNonMaxWindowIntoMonitor() needed, because of maximised window.")
     return
   end
 
@@ -126,7 +128,7 @@ ScreenManager_MonitorToggle = function()
       -- print("Restoring windowed view.")
       UpdateWindow()
     else
-      FitNonMaxWindowIntoScreen()
+      FitNonMaxWindowIntoMonitor()
     end
   end
 
@@ -228,7 +230,7 @@ displayChangeFrame:SetScript("OnEvent", function()
   -- The size as it is calculated by the UI.
   -- Width x height for a 21:9 screen are always 1843 x 768 when you multiply GetScreenWidth() * UIParent:GetEffectiveScale()
   -- https://warcraft.wiki.gg/wiki/UI_scaling#Screen_units
-  -- GetScreenWidth() = UIParent:GetWidth()     GetScreenHeight() = UIParent:GetHeight()
+  -- -- GetScreenWidth() is the same as UIParent:GetWidth()     GetScreenHeight() is the same as UIParent:GetHeight()
   -- local ui_scale = UIParent:GetEffectiveScale()
   -- local ui_width = GetScreenWidth() * ui_scale
   -- local ui_height = GetScreenHeight() * ui_scale
@@ -271,7 +273,7 @@ displayChangeFrame:SetScript("OnEvent", function()
           desiredMonitor = nil
         end
         
-        FitNonMaxWindowIntoScreen()
+        FitNonMaxWindowIntoMonitor()
       end
     end
   end
