@@ -57,7 +57,7 @@ local function FitNonMaxWindowIntoMonitor()
   for k, v in pairs(sizes) do
     local _, sizeHeight = v:GetXY()
     if sizeHeight < maxHeight then
-      local newWidth = sizeHeight * Round(maxWidth/maxHeight, 10)
+      local newWidth = sizeHeight * Round(maxWidth/maxHeight, 2)
       -- print("Changing window to", newWidth, sizeHeight, "which is smaller than", maxWidth, maxHeight, "with the same aspect ratio of", Round(maxWidth/maxHeight, 2))
       C_VideoOptions.SetGameWindowSize(newWidth, sizeHeight)
       UpdateWindow()
@@ -288,33 +288,16 @@ end)
 
 
 
+
+
+
+
+
+
+
+
+
 -- local ButtonFrameTemplate_HidePortrait = _G.ButtonFrameTemplate_HidePortrait
-
--- -- For debugging.
--- local function PrintTable(t, indent)
-  -- assert(type(t) == "table", "PrintTable() called for non-table!")
-
-  -- local indentString = ""
-  -- for i = 1, indent do
-    -- indentString = indentString .. "  "
-  -- end
-
-  -- for k, v in pairs(t) do
-    -- if type(v) ~= "table" then
-      -- print(indentString, k, "=", v)
-    -- else
-      -- print(indentString, k, "=")
-      -- print(indentString, "  {")
-      -- PrintTable(v, indent + 2)
-      -- print(indentString, "  }")
-    -- end
-  -- end
--- end
-
-
-
-
-
 
 -- ---------------------
 -- -- Constants --------
