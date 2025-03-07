@@ -195,7 +195,7 @@ fadeInFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 local combatCheckFrame = CreateFrame("Frame")
 combatCheckFrame:Hide()
-combatCheckFrame:SetScript("OnEvent", function(self, event, ...)
+combatCheckFrame:SetScript("OnEvent", function()
   if fadeInFrame:IsShown() and ScreenManager_config.fadeInAfterLoading_notInCombat then
     fadeInFrame:Hide()
   end
