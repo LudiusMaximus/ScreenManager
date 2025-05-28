@@ -167,7 +167,7 @@ Addon.FadeIn = function()
   fadeInFrame:Show()
   fadeInFrame:SetAlpha(alpha)
 
-  fadeInFrame:SetScript("OnUpdate", function(fadeInFrame, elapsed)
+  fadeInFrame:SetScript("OnUpdate", function(self, elapsed)
 
     if ignoreFirstFrames > 0 then
       ignoreFirstFrames = ignoreFirstFrames - 1
@@ -181,10 +181,10 @@ Addon.FadeIn = function()
 
     alpha = alpha - elapsed / ScreenManager_config.fadeInAfterLoading_fadeTime
     if alpha <= 0 then
-      fadeInFrame:SetScript("OnUpdate", nil)
-      fadeInFrame:Hide()
+      self:SetScript("OnUpdate", nil)
+      self:Hide()
     else
-      fadeInFrame:SetAlpha(alpha)
+      self:SetAlpha(alpha)
     end
   end)
   
