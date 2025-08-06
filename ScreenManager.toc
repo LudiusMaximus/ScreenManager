@@ -1,7 +1,7 @@
 ## Interface: 110200
 ## Version: @project-version@
 ## Title: Screen Manager
-## IconTexture: interface/icons/inv_misc_blizzcon09_graphicscard.blp
+## IconTexture: interface/icons/trade_engineering.blp
 ## Author: LudiusMaximus
 ## Notes: Manage screen related stuff.
 ## SavedVariables: ScreenManager_config
