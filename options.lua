@@ -88,15 +88,6 @@ end
 
 
 
-
-
-
-
--- If I ever do i18n for this, it would be here.
-_G["BINDING_NAME_SCREEN_MANAGER_FULLSCREEN_TOGGLE"] = "Fullscreen Toggle"
-_G["BINDING_NAME_SCREEN_MANAGER_MONITOR_TOGGLE"] = "Monitor Toggle"
-
-
 local currentlyEditedCommand = nil
 
 local keyPressFrame = CreateFrame("Frame")
@@ -157,6 +148,7 @@ local KeyPressedFunction = function(self, key)
 end
 
 
+-- Cover the remaining options and make them unclickable while our keybind prompt is open.
 local coverOptionsFrame = CreateFrame("Frame")
 coverOptionsFrame:SetFrameStrata("HIGH")
 coverOptionsFrame:SetFrameLevel(10000)
@@ -187,7 +179,7 @@ StaticPopupDialogs["SCREEN_MANAGER_KEYBIND_PROMPT"] = {
 
   OnShow = function (_, data)
     currentlyEditedCommand = data.command
-    print(currentlyEditedCommand)
+    -- print(currentlyEditedCommand)
     ShowCoverOptionsFrame()
     keyPressFrame:SetScript("OnKeyDown", KeyPressedFunction)
   end,
@@ -234,6 +226,15 @@ StaticPopupDialogs["SCREEN_MANAGER_KEYBIND_CONFIRM"] = {
   OnButton2 = function() end,
 
 }
+
+
+
+
+local fullScreenToggleBindingName = "SCREEN_MANAGER_FULLSCREEN_TOGGLE"
+local monitorToggleBindingName = "SCREEN_MANAGER_MONITOR_TOGGLE"
+-- If I ever do i18n for this, it would be here.
+_G["BINDING_NAME_" .. fullScreenToggleBindingName] = "Fullscreen Toggle"
+_G["BINDING_NAME_" .. monitorToggleBindingName] = "Monitor Toggle"
 
 
 
@@ -406,7 +407,7 @@ local optionsTable = {
           type = "description",
           name =
             function()
-              local key = GetBindingKey("SCREEN_MANAGER_FULLSCREEN_TOGGLE")
+              local key = GetBindingKey(fullScreenToggleBindingName)
               if key then
                 return "Assigned Hotkey: |cffffd200" .. key .. "|r"
               else
@@ -424,8 +425,8 @@ local optionsTable = {
           width = 0.9,
           func =
             function()
-              local data = { ["command"] = "SCREEN_MANAGER_FULLSCREEN_TOGGLE" }
-              StaticPopup_Show("SCREEN_MANAGER_KEYBIND_PROMPT", SETTINGS_BIND_KEY_TO_COMMAND_OR_CANCEL:format(GetBindingName("SCREEN_MANAGER_FULLSCREEN_TOGGLE"), GetBindingText("ESCAPE")), _, data)
+              local data = { ["command"] = fullScreenToggleBindingName }
+              StaticPopup_Show("SCREEN_MANAGER_KEYBIND_PROMPT", SETTINGS_BIND_KEY_TO_COMMAND_OR_CANCEL:format(GetBindingName(fullScreenToggleBindingName), GetBindingText("ESCAPE")), _, data)
             end,
         },
 
@@ -439,11 +440,11 @@ local optionsTable = {
           width = 0.9,
           func =
             function()
-              SetBinding(GetBindingKey("SCREEN_MANAGER_FULLSCREEN_TOGGLE"))
+              SetBinding(GetBindingKey(fullScreenToggleBindingName))
             end,
           disabled =
             function()
-              if GetBindingKey("SCREEN_MANAGER_FULLSCREEN_TOGGLE") then return false else return true end
+              if GetBindingKey(fullScreenToggleBindingName) then return false else return true end
             end,
         },
       },
@@ -465,7 +466,7 @@ local optionsTable = {
           type = "description",
           name =
             function()
-              local key = GetBindingKey("SCREEN_MANAGER_MONITOR_TOGGLE")
+              local key = GetBindingKey(monitorToggleBindingName)
               if key then
                 return "Assigned Hotkey: |cffffd200" .. key .. "|r"
               else
@@ -483,8 +484,8 @@ local optionsTable = {
           width = 0.9,
           func =
             function()
-              local data = { ["command"] = "SCREEN_MANAGER_MONITOR_TOGGLE" }
-              StaticPopup_Show("SCREEN_MANAGER_KEYBIND_PROMPT", SETTINGS_BIND_KEY_TO_COMMAND_OR_CANCEL:format(GetBindingName("SCREEN_MANAGER_MONITOR_TOGGLE"), GetBindingText("ESCAPE")), _, data)
+              local data = { ["command"] = monitorToggleBindingName }
+              StaticPopup_Show("SCREEN_MANAGER_KEYBIND_PROMPT", SETTINGS_BIND_KEY_TO_COMMAND_OR_CANCEL:format(GetBindingName(monitorToggleBindingName), GetBindingText("ESCAPE")), _, data)
             end,
         },
 
@@ -498,11 +499,11 @@ local optionsTable = {
           width = 0.9,
           func =
             function()
-              SetBinding(GetBindingKey("SCREEN_MANAGER_MONITOR_TOGGLE"))
+              SetBinding(GetBindingKey(monitorToggleBindingName))
             end,
           disabled =
             function()
-              if GetBindingKey("SCREEN_MANAGER_MONITOR_TOGGLE") then return false else return true end
+              if GetBindingKey(monitorToggleBindingName) then return false else return true end
             end,
         },
         

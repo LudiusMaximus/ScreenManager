@@ -1,10 +1,9 @@
-## Interface: 110107
+## Interface: 110200
 ## Version: @project-version@
 ## Title: Screen Manager
+## IconTexture: interface/icons/inv_misc_blizzcon09_graphicscard.blp
 ## Author: LudiusMaximus
 ## Notes: Manage screen related stuff.
-## RequiredDeps:
-## OptionalDeps:
 ## SavedVariables: ScreenManager_config
 ## X-Curse-Project-ID:
 ## X-WoWI-ID:
