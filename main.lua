@@ -375,7 +375,7 @@ end)
   -- _G[slider:GetName() .. 'Text']:SetText(sliderTitle)
 
   -- slider.valueLabel = parentFrame:CreateFontString("screenManager_"..variableName.."SliderValueLabel", "OVERLAY")
-  -- slider.valueLabel:SetFont("Fonts\\FRIZQT__.TTF", 11)
+  -- slider.valueLabel:SetFontObject("Game12Font")
   -- slider.valueLabel:SetTextColor(1, 1, 1)
   -- slider.valueLabel:SetPoint("LEFT", slider, "RIGHT", 15, 0)
   -- slider.valueLabel:SetWidth(50)
