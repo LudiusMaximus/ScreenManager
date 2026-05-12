@@ -1,4 +1,8 @@
 <Bindings>
-  <Binding name="SCREEN_MANAGER_FULLSCREEN_TOGGLE" category="Screen Manager">ScreenManager_FullscreenToggle()</Binding>
-  <Binding name="SCREEN_MANAGER_MONITOR_TOGGLE" category="Screen Manager">ScreenManager_MonitorToggle()</Binding>
+  <!-- The keys bound here are routed through ScreenManagerFullscreenApplyProxy
+       and ScreenManagerMonitorApplyProxy via SetOverrideBindingClick in
+       main.lua, so the input system fires the click in secure context.
+       These slots only reserve the UI entries. -->
+  <Binding name="SCREEN_MANAGER_FULLSCREEN_TOGGLE" category="Screen Manager"></Binding>
+  <Binding name="SCREEN_MANAGER_MONITOR_TOGGLE" category="Screen Manager"></Binding>
 </Bindings>

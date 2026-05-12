@@ -1,4 +1,4 @@
-local folderName, Addon = ...
+local folderName, addon = ...
 local L = LibStub("AceAddon-3.0"):GetAddon(folderName)
 
 -- For the options menu.
@@ -14,9 +14,12 @@ local CONFIG_DEFAULTS = {
   fadeInAfterLoading_startAfter  = 0.2,
   fadeInAfterLoading_fadeTime    = 1.2,
   
-  monitorToggle_windowResize = true,
+  fullScreenToggle_windowResize  = true,
+  monitorToggle_windowResize     = true,
+  
+  monitorScalings                = {},
 
-  resolutionProfileList = {},
+  resolutionProfileList          = {},
 }
 
 
@@ -232,6 +235,9 @@ StaticPopupDialogs["SCREEN_MANAGER_KEYBIND_CONFIRM"] = {
 
 local fullScreenToggleBindingName = "SCREEN_MANAGER_FULLSCREEN_TOGGLE"
 local monitorToggleBindingName = "SCREEN_MANAGER_MONITOR_TOGGLE"
+-- For console messages in main.lua.
+addon.fullScreenToggleBindingName = fullScreenToggleBindingName
+
 -- If I ever do i18n for this, it would be here.
 _G["BINDING_NAME_" .. fullScreenToggleBindingName] = "Fullscreen Toggle"
 _G["BINDING_NAME_" .. monitorToggleBindingName] = "Monitor Toggle"
@@ -447,6 +453,18 @@ local optionsTable = {
               if GetBindingKey(fullScreenToggleBindingName) then return false else return true end
             end,
         },
+
+        fullScreenToggleWindowResizeToggle = {
+          order = 4,
+          type = "toggle",
+          name = "Resize Window to Match Monitor",
+          desc = "When the game window is put into windowed mode, automatically set it to an aspect ratio matching the monitor.",
+          width = "full",
+          get = function() return config.fullScreenToggle_windowResize end,
+          set = function(_, newValue) config.fullScreenToggle_windowResize = newValue end,
+        },
+
+
       },
     },
     
@@ -512,7 +530,7 @@ local optionsTable = {
           order = 4,
           type = "toggle",
           name = "Resize Window to Match Monitor",
-          desc = "When the non-maximised game window is moved to another monitor, automatically set it to an aspect ratio matching the monitor.",
+          desc = "When the windowed game window is moved to another monitor, automatically set it to an aspect ratio matching the monitor.",
           width = "full",
           get = function() return config.monitorToggle_windowResize end,
           set = function(_, newValue) config.monitorToggle_windowResize = newValue end,
@@ -594,7 +612,7 @@ local optionsTable = {
           desc = "Test what the fade in looks like.",
           width = "normal",
           disabled = function() return not config.fadeInAfterLoading end,
-          func = Addon.FadeIn,
+          func = addon.FadeIn,
         },
 
         blank51 = {order = 5.1, type = "description", name = " ", width = 0.1,},
